@@ -14,8 +14,8 @@ services:
         fromDatabase:
           name: futbol-db
           property: connectionString
-          
-  - type: psql
-    name: futbol-db
+
+databases:
+  - name: futbol-db
     databaseName: futbol_db
     user: postgres
