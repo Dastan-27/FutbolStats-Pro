@@ -5,12 +5,16 @@ require('dotenv').config();
 // del servicio de Docker ('db_futbol'). Esto hará que falle DENTRO del contenedor del backend.
 const connectionString = process.env.DATABASE_URL
 
-const pool = new Pool({
+const poolConfig = {
   connectionString,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
+};
+
+// Habilitar SSL solo para conexiones externas a Render o en producción
+if (process.env.NODE_ENV === 'production' || (connectionString && connectionString.includes('render.com'))) {
+  poolConfig.ssl = { rejectUnauthorized: false };
+}
+
+const pool = new Pool(poolConfig);
 
 pool.on('connect', () => {
   console.log('⚡ Conexión exitosa a la base de datos PostgreSQL');
