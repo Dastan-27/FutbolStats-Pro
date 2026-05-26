@@ -21,8 +21,7 @@ afterAll(async () => {
 
 describe('GET /api/posiciones', () => {
   it('Debería retornar la lista de equipos ordenada por puntos', async () => {
-    
-    // ✅ ERROR 2 Corregido: Eliminada la validación estricta del entorno para evitar bloqueos locales o en CI.
+
     const res = await request(app).get('/api/posiciones');
     expect(res.statusCode).toEqual(200);
     expect(res.body.length).toBeGreaterThan(0);

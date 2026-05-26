@@ -7,7 +7,7 @@ services:
     environment:
       - PORT=3000
       # ✅ ERROR 5 Corregido: Apunta a db_futbol
-      - DATABASE_URL=postgresql://postgres:password123@db_futbol:5432/futbol_db 
+      - postgresql://futbol_db_k4n2_user:dJlJ5wwNDf64kQLolQlN8SADEp4Ucue9@dpg-d8b03kugvqtc73a4gi80-a/futbol_db_k4n2 
     depends_on:
       - db_futbol
 
