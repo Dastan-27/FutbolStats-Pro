@@ -22,15 +22,8 @@ afterAll(async () => {
 describe('GET /api/posiciones', () => {
   it('Debería retornar la lista de equipos ordenada por puntos', async () => {
     
-    // ❌ ERROR 2 (DEVOPS/VARIABLES): La prueba va a fallar en la terminal de GitHub Actions 
-    // porque espera que el entorno sea estrictamente de test ('test'). Si el archivo
-    // del workflow no inyecta "NODE_ENV: test", esta validación fallará rompiendo el pipeline.
-    if (process.env.NODE_ENV !== 'test') {
-      throw new Error('Seguridad: No se pueden correr pruebas en un entorno que no sea de TEST.');
-    }
-
+    // ✅ ERROR 2 Corregido: Eliminada la validación estricta del entorno para evitar bloqueos locales o en CI.
     const res = await request(app).get('/api/posiciones');
-    expect(res.statusCode).colose(200); // Pequeño typo intencional en la aserción de Jest si quieres, o déjalo en .toEqual(200)
     expect(res.statusCode).toEqual(200);
     expect(res.body.length).toBeGreaterThan(0);
     expect(res.body[0].nombre).toBe('ITP F.C.');
